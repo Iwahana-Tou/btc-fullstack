@@ -1,0 +1,30 @@
+{
+  "name": "btc-fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js",
+    "db:migrate": "knex migrate:latest",
+    "db:migrate-make": "knex migrate:make",
+    "db:migrate-rollback": "knex migrate:rollback --all",
+    "db:seed": "knex seed:run",
+    "db:seed-make": "knex seed:make",
+    "db:reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run",
+    "build": "cd .. && cd front && npm install && npm run build && rm -rf ../public && cp -r dist ../public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
