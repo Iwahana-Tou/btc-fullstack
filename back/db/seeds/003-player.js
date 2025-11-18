@@ -14,6 +14,7 @@ exports.seed = async function (knex) {
       hitpoint: 30,
       attack_move1: 2,
       attack_move2: 3,
+      src: 'https://i.ibb.co/YFy4yzZp/3.png',
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ exports.seed = async function (knex) {
       hitpoint: 50,
       attack_move1: 2,
       attack_move2: 3,
+      src: 'https://i.ibb.co/YFy4yzZp/3.png',
     },
   ]);
 };

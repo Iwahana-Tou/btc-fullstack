@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
-import { useState } from 'react';
-import image from '../assets/戦士.jpeg';
 
 export default function PlayerStatus({
   playerData,
   setPlayerData,
   player,
   setPlayer,
+  playerSrc,
+  setPlayerSrc,
+  isDisplayImg,
 }) {
-  const [playerSrc, setPlayerSrc] = useState();
-
   useEffect(() => {
     if (player) return;
     const url = `/api/get/player/${1}`;
@@ -24,19 +23,33 @@ export default function PlayerStatus({
           HP: Number(data.hitpoint),
           attack_move1: data.attack_move1,
           attack_move2: data.attack_move2,
+          src: data.src,
         });
-        setPlayerSrc(image);
+        setPlayerSrc(data.src);
       });
     setPlayer(true);
   }, [player]); // eslint-disable-line
   return (
     <>
       <div>
-        <img className="playerImg" src={playerSrc}></img>
+        {isDisplayImg ? (
+          <img className="playerImg" src={playerSrc}></img>
+        ) : (
+          <img
+            className="noPlayerImg"
+            src="https://www.colordic.org/image/1a1a1a.png"
+          ></img>
+        )}
         <p className="playerName">{playerData.name}</p>
       </div>
 
-      <p className="playerStatus">HP:{playerData.HP > 0 ? playerData.HP : 0}</p>
+      {isDisplayImg ? (
+        <p className="playerStatus">
+          HP:{playerData.HP > 0 ? playerData.HP : 0}
+        </p>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

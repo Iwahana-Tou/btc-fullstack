@@ -8,13 +8,19 @@ export default function BattleManu({
   setMonsterData,
   setResult,
   setIsContinue,
+  playerSrc,
+  setPlayerSrc,
+  monsterSrc,
+  setMonsterSrc,
+  setMonIsDisplayImg,
+  setIsDisplayImg,
 }) {
   const [display, setDisplay] = useState(true);
-
   const clickOnBattleText = () => {
     setDisplay(false);
     setScreenText('Playerのこうげき');
-    setTimeout(attackPlayerSide, 1000);
+    setTimeout(attackPlayerSide, 1500);
+    setTimeout(monDamageEfect, 1500);
   };
 
   const attackPlayerSide = () => {
@@ -25,7 +31,8 @@ export default function BattleManu({
 
   const monsterText = () => {
     setScreenText(`${monsterData.name}のこうげき`);
-    setTimeout(attackMonsterSide, 1000);
+    setTimeout(attackMonsterSide, 1500);
+    setTimeout(damageEfect, 1500);
   };
 
   const attackMonsterSide = () => {
@@ -49,7 +56,7 @@ export default function BattleManu({
           damage = damage * 5;
           setScreenText(`会心の一撃、${damage} ダメージ`);
         } else {
-          setScreenText(`${data.attack_name}、${damage} ダメージ`);
+          setScreenText(`${data.attack_name}、${damage} ダメージをあたえた`);
         }
         const justNowHp = monsterData.HP - damage;
         setMonsterData({
@@ -76,10 +83,11 @@ export default function BattleManu({
           });
           setTimeout(() => {
             setScreenText('モンスターをたおした！');
+            setMonIsDisplayImg(false);
             setTimeout(() => setResult(true), 1500);
-          }, 1000);
+          }, 1500);
         } else {
-          setTimeout(monsterText, 1000);
+          setTimeout(monsterText, 1500);
         }
       });
   }
@@ -95,7 +103,7 @@ export default function BattleManu({
       .then((res) => res.json())
       .then((data) => {
         const damage = data.attack + monsterData.attack;
-        setScreenText(`${data.attack_name}、${damage} ダメージ`);
+        setScreenText(`${data.attack_name}、${damage} ダメージをうけた`);
         const justNowHp = playerData.HP - damage;
         setPlayerData({
           id: playerData.id,
@@ -107,19 +115,51 @@ export default function BattleManu({
           attack_move2: playerData.attack_move2,
         });
         if (justNowHp <= 0) {
-          // setMonster(false);
           setTimeout(() => {
             setScreenText('Playerは死んでしまった...');
+            setIsDisplayImg(false);
             setTimeout(() => setIsContinue(true), 1500);
-          }, 1000);
+          }, 1500);
         } else {
           setTimeout(() => {
             setScreenText('コマンドを選択');
             setDisplay(true);
-          }, 1000);
+          }, 1500);
         }
       });
   }
+
+  const monDamageEfect = () => {
+    setMonIsDisplayImg(false);
+    setTimeout(monDamageEfect2, 150);
+  };
+  const monDamageEfect2 = () => {
+    setMonIsDisplayImg(true);
+    setTimeout(monDamageEfect3, 150);
+  };
+  const monDamageEfect3 = () => {
+    setMonIsDisplayImg(false);
+    setTimeout(monDamageEfect4, 150);
+  };
+  const monDamageEfect4 = () => {
+    setMonIsDisplayImg(true);
+  };
+
+  const damageEfect = () => {
+    setIsDisplayImg(false);
+    setTimeout(damageEfect2, 150);
+  };
+  const damageEfect2 = () => {
+    setIsDisplayImg(true);
+    setTimeout(damageEfect3, 150);
+  };
+  const damageEfect3 = () => {
+    setIsDisplayImg(false);
+    setTimeout(damageEfect4, 150);
+  };
+  const damageEfect4 = () => {
+    setIsDisplayImg(true);
+  };
 
   const dashClick = () => {
     setResult(true);
@@ -129,7 +169,11 @@ export default function BattleManu({
     <>
       {display ? (
         <>
-          <button className="battleButton" onClick={clickOnBattleText}>
+          <button
+            id="actionButton"
+            className="battleButton"
+            onClick={clickOnBattleText}
+          >
             たたかう
           </button>
           <button className="dashButton" onClick={dashClick}>

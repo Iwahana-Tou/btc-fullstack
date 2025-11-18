@@ -23,7 +23,7 @@ npm run dev
 依存関係のインストール
 
 ```sh
-cd ../back && npm install
+cd back && npm install
 ```
 
 データベースの構築
@@ -61,3 +61,14 @@ SELECT * FROM player;
 ```sh
 npm run dev
 ```
+
+## このアプリの拡張計画
+
+### ・レベルシステムの実装
+
+これには DB にモンスターのから手に入る経験値、Player の蓄積した経験値、  
+経験値テーブル等の情報を追加しなければなりません
+
+### ・アイテムや装備の実装
+
+### ・BOSS モンスターの実装

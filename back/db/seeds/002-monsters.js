@@ -14,6 +14,7 @@ exports.seed = async function (knex) {
       hitpoint: 10,
       attack_move1: 1,
       attack_move2: 1,
+      src: 'https://i.ibb.co/bM1LXcZr/image.png',
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ exports.seed = async function (knex) {
       hitpoint: 10,
       attack_move1: 1,
       attack_move2: 2,
+      src: 'https://i.ibb.co/cSNWgyWk/4.png',
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ exports.seed = async function (knex) {
       hitpoint: 10,
       attack_move1: 2,
       attack_move2: 3,
+      src: 'https://i.ibb.co/BVZn4L7Y/1.png',
     },
     {
       id: 4,
@@ -41,6 +44,7 @@ exports.seed = async function (knex) {
       hitpoint: 25,
       attack_move1: 2,
       attack_move2: 5,
+      src: 'https://i.ibb.co/20ksj2pd/2.png',
     },
   ]);
 };

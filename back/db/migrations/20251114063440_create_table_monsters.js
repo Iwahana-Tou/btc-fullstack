@@ -11,6 +11,7 @@ exports.up = function (knex) {
     table.integer('hitpoint').notNullable();
     table.integer('attack_move1').notNullable();
     table.integer('attack_move2').notNullable();
+    table.string('src').notNullable();
     table.foreign('attack_move1').references('attack_move.attack_id');
     table.foreign('attack_move2').references('attack_move.attack_id');
   });

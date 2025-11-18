@@ -5,6 +5,7 @@ export default function ResultScreen({
   setMonster,
   setScreenText,
   setPlayer,
+  setMonIsDisplayImg,
 }) {
   const [killsData, setKillsData] = useState([]);
 
@@ -12,6 +13,7 @@ export default function ResultScreen({
     setMonster(false);
     setPlayer(false);
     setResult(false);
+    setMonIsDisplayImg(true);
     setScreenText('コマンドを選択');
   };
 

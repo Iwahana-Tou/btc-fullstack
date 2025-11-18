@@ -3,11 +3,13 @@ export default function ContinueScreen({
   setPlayer,
   setMonster,
   setScreenText,
+  setIsDisplayImg,
 }) {
   const onClick = () => {
     setPlayer(false);
     setMonster(false);
     setIsContinue(false);
+    setIsDisplayImg(true);
     setScreenText('コマンドを選択');
   };
 

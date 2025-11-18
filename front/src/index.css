@@ -1,21 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 
-/* :root { */
-/* background-color: #1a1a1a; */
-/* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-/* } */
-
 body {
   margin: 0;
   display: flex;
@@ -47,11 +31,22 @@ h1 {
 
 .playerStatus {
   margin-left: 10px;
+  font-size: 20px;
 }
 
 .monsterImg {
   height: 110px;
   width: 100px;
+}
+
+.noMonImg {
+  height: 110px;
+  width: 100px;
+}
+
+.noPlayerImg {
+  height: 130px;
+  width: 150px;
 }
 
 .monsterName,
@@ -96,33 +91,3 @@ button {
 button:hover {
   border-color: #646cff;
 }
-
-/* .battleButton::before,
-.dashButton:before {
-  content: '＞';
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-}
-.battleButton:hover:before,
-.dashButton:hover:before {
-  opacity: 1;
-} */
-/* button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */

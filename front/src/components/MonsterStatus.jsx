@@ -1,22 +1,17 @@
 import { useEffect } from 'react';
-import { useState } from 'react';
-import image from '../assets/スライム.jpeg';
-import image2 from '../assets/ドラキー.jpeg';
-import image3 from '../assets/いたずらもぐら.png';
-import image4 from '../assets/ゴーレム.webp';
 
 export default function MonsterStatus({
   monsterData,
   setMonsterData,
   monster,
   setMonster,
+  monsterSrc,
+  setMonsterSrc,
+  isMonDisplayImg,
 }) {
-  const [monsterSrc, setMonsterSrc] = useState();
-
   useEffect(() => {
-    const id = Math.floor(Math.random() * 4) + 1;
-
     if (monster) return;
+    const id = Math.floor(Math.random() * 4) + 1;
     const url = `/api/get/monsters/${id}`;
     fetch(url)
       .then((res) => res.json())
@@ -29,22 +24,28 @@ export default function MonsterStatus({
           HP: Number(el.hitpoint),
           attack_move1: el.attack_move1,
           attack_move2: el.attack_move2,
+          src: el.src,
         });
-        if (el.id === 1) setMonsterSrc(image);
-        else if (el.id === 2) setMonsterSrc(image2);
-        else if (el.id === 3) setMonsterSrc(image3);
-        else setMonsterSrc(image4);
+        setMonsterSrc(el.src);
       });
     setMonster(true);
   }, [monster]); // eslint-disable-line
 
   return (
     <>
-      {console.log(monsterData.HP)}
-      {/* {console.log(monsterData.id)} */}
-      {/* {console.log(monster)} */}
       <p className="monsterName">{monsterData.name}</p>
-      <img className="monsterImg" src={monsterSrc}></img>
+      {isMonDisplayImg ? (
+        <img
+          htmlFor="actionButton"
+          className="monsterImg"
+          src={monsterSrc}
+        ></img>
+      ) : (
+        <img
+          className="noMonImg"
+          src="https://www.colordic.org/image/1a1a1a.png"
+        ></img>
+      )}
     </>
   );
 }

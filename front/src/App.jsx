@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import MonsterStatus from './components/MonsterStatus.jsx';
 import BattleManu from './components/BattleMenu.jsx';
 import PlayerStatus from './components/PlayerStatus.jsx';
@@ -8,7 +8,6 @@ import ResultScreen from './components/ResuleScreen.jsx';
 import ContinueScreen from './components/ContinueScreen.jsx';
 
 function App() {
-  // const [message, setMessage] = useState();
   const [playerData, setPlayerData] = useState({});
   const [monsterData, setMonsterData] = useState({});
   const [monster, setMonster] = useState(false);
@@ -16,14 +15,10 @@ function App() {
   const [screenText, setScreenText] = useState('コマンドを選択');
   const [result, setResult] = useState(false);
   const [isContinue, setIsContinue] = useState(false);
-
-  // useEffect(() => {
-  //   fetch("/api")
-  //     .then((res) => res.text())
-  //     .then((data) => setMessage(data));
-  // }, []);
-
-  // return <div className="App">Message from the backend: {message}</div>;
+  const [playerSrc, setPlayerSrc] = useState();
+  const [monsterSrc, setMonsterSrc] = useState();
+  const [isDisplayImg, setIsDisplayImg] = useState(true);
+  const [isMonDisplayImg, setMonIsDisplayImg] = useState(true);
 
   if (result) {
     return (
@@ -32,6 +27,7 @@ function App() {
         setMonster={setMonster}
         setResult={setResult}
         setScreenText={setScreenText}
+        setMonIsDisplayImg={setMonIsDisplayImg}
       />
     );
   } else if (isContinue) {
@@ -41,6 +37,7 @@ function App() {
         setMonster={setMonster}
         setIsContinue={setIsContinue}
         setScreenText={setScreenText}
+        setIsDisplayImg={setIsDisplayImg}
       />
     );
   } else {
@@ -51,6 +48,9 @@ function App() {
           setMonsterData={setMonsterData}
           monster={monster}
           setMonster={setMonster}
+          monsterSrc={monsterSrc}
+          setMonsterSrc={setMonsterSrc}
+          isMonDisplayImg={isMonDisplayImg}
         />
         <BattleScreen screenText={screenText} />
         <div className="playerSide">
@@ -64,6 +64,12 @@ function App() {
             setPlayer={setPlayer}
             setResult={setResult}
             setIsContinue={setIsContinue}
+            playerSrc={playerSrc}
+            setPlayerSrc={setPlayerSrc}
+            monsterSrc={monsterSrc}
+            setMonsterSrc={setMonsterSrc}
+            setIsDisplayImg={setIsDisplayImg}
+            setMonIsDisplayImg={setMonIsDisplayImg}
           />
           <PlayerStatus
             className="player"
@@ -71,6 +77,9 @@ function App() {
             setPlayerData={setPlayerData}
             player={player}
             setPlayer={setPlayer}
+            playerSrc={playerSrc}
+            setPlayerSrc={setPlayerSrc}
+            isDisplayImg={isDisplayImg}
           />
         </div>
       </>

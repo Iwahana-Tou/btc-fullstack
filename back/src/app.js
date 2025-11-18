@@ -15,10 +15,6 @@ function buildApp() {
 
   app.use(express.json());
 
-  // app.use('/api', (req, res) => {
-  //   res.send('Hello Word');
-  // });
-
   //player
   app.get('/api/get/player', async (req, res) => {
     const playerData = await knex.select('*').from('player');
