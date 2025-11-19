@@ -30,6 +30,12 @@ function buildApp() {
     res.json(playerData[0]);
   });
 
+  app.post('/api/post/player', async (req, res) => {
+    const postData = req.body;
+    await knex('player').insert(postData);
+    res.status(200).end();
+  });
+
   //monsters
   app.get('/api/get/monsters', async (req, res) => {
     const monstersData = await knex.select('*').from('monsters');
@@ -79,6 +85,18 @@ function buildApp() {
   app.post('/api/post/total_kills', async (req, res) => {
     const postData = req.body;
     await knex('total_kills').insert(postData);
+  });
+
+  //uses
+  app.get('/api/get/users', async (req, res) => {
+    const usersData = await knex.select('*').from('users');
+    res.send(usersData);
+  });
+
+  app.post('/api/post/users', async (req, res) => {
+    const postData = req.body;
+    await knex('users').insert(postData);
+    res.status(200).end();
   });
 
   return app;

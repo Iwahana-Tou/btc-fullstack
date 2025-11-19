@@ -181,7 +181,10 @@ export default function BattleManu({
           </button>
         </>
       ) : (
-        <></>
+        <img
+          className="noPlayerImg"
+          src="https://www.colordic.org/image/1a1a1a.png"
+        ></img>
       )}
     </>
   );

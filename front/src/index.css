@@ -10,7 +10,8 @@ body {
   font-family: 'DotGothic16', sans-serif;
 }
 
-h1 {
+h1,
+h2 {
   color: #ffffff;
 }
 
@@ -68,7 +69,8 @@ h1 {
 
 .battleButton,
 .dashButton,
-.resultButton {
+.resultButton,
+.loginButton {
   background-color: #1a1a1a;
   color: #ffffff;
   border: 2px solid #ffffff;

@@ -8,10 +8,11 @@ export default function PlayerStatus({
   playerSrc,
   setPlayerSrc,
   isDisplayImg,
+  userData,
 }) {
   useEffect(() => {
     if (player) return;
-    const url = `/api/get/player/${1}`;
+    const url = `/api/get/player/${userData.id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

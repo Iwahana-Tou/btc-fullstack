@@ -21,9 +21,10 @@ function App() {
   const [isDisplayImg, setIsDisplayImg] = useState(true);
   const [isMonDisplayImg, setMonIsDisplayImg] = useState(true);
   const [login, setLogin] = useState(true);
+  const [userData, setUserData] = useState({});
 
   if (login) {
-    return <LoginScreen setLogin={setLogin} />;
+    return <LoginScreen setLogin={setLogin} setUserData={setUserData} />;
   } else if (result) {
     return (
       <ResultScreen
@@ -32,6 +33,7 @@ function App() {
         setResult={setResult}
         setScreenText={setScreenText}
         setMonIsDisplayImg={setMonIsDisplayImg}
+        userData={userData}
       />
     );
   } else if (isContinue) {
@@ -84,6 +86,7 @@ function App() {
             playerSrc={playerSrc}
             setPlayerSrc={setPlayerSrc}
             isDisplayImg={isDisplayImg}
+            userData={userData}
           />
         </div>
       </>

@@ -6,6 +6,7 @@ export default function ResultScreen({
   setScreenText,
   setPlayer,
   setMonIsDisplayImg,
+  userData,
 }) {
   const [killsData, setKillsData] = useState([]);
 
@@ -18,10 +19,11 @@ export default function ResultScreen({
   };
 
   useEffect(() => {
-    fetch('/api/get/total_kills/1')
+    const url = `/api/get/total_kills/${userData.id}`;
+    fetch(url)
       .then((data) => data.json())
       .then((data) => setKillsData(data));
-  }, []);
+  }, [killsData]); // eslint-disable-line
 
   return (
     <>
