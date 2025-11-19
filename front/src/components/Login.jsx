@@ -14,6 +14,8 @@ export default function LoginScreen({ setLogin, setAllUserData, setUserData }) {
   };
 
   const handleLogin = () => {
+    if (nameRef.current.value === '' || passwordRef.current.value === '')
+      return;
     const params = new URLSearchParams();
     params.append('name', nameRef.current.value);
     params.append('password', passwordRef.current.value);

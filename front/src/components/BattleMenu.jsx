@@ -8,10 +8,6 @@ export default function BattleManu({
   setMonsterData,
   setResult,
   setIsContinue,
-  playerSrc,
-  setPlayerSrc,
-  monsterSrc,
-  setMonsterSrc,
   setMonIsDisplayImg,
   setIsDisplayImg,
 }) {

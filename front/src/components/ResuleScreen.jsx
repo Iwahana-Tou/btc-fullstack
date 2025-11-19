@@ -7,15 +7,25 @@ export default function ResultScreen({
   setPlayer,
   setMonIsDisplayImg,
   userData,
+  setLogin,
 }) {
   const [killsData, setKillsData] = useState([]);
 
-  const onClick = () => {
+  const onClickNext = () => {
     setMonster(false);
     setPlayer(false);
     setResult(false);
     setMonIsDisplayImg(true);
     setScreenText('コマンドを選択');
+  };
+
+  const onClickLogout = () => {
+    setMonster(false);
+    setPlayer(false);
+    setResult(false);
+    setMonIsDisplayImg(true);
+    setScreenText('コマンドを選択');
+    setLogin(true);
   };
 
   useEffect(() => {
@@ -28,8 +38,11 @@ export default function ResultScreen({
   return (
     <>
       <h1>RESULT</h1>
-      <button className="resultButton" onClick={onClick}>
-        次へ
+      <button className="resultButton" onClick={onClickNext}>
+        NEXT
+      </button>
+      <button className="logoutButton" onClick={onClickLogout}>
+        Logout
       </button>
       <div className="log">
         <p>Total Kills</p>

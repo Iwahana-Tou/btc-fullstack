@@ -34,6 +34,7 @@ function App() {
         setScreenText={setScreenText}
         setMonIsDisplayImg={setMonIsDisplayImg}
         userData={userData}
+        setLogin={setLogin}
       />
     );
   } else if (isContinue) {
@@ -44,6 +45,7 @@ function App() {
         setIsContinue={setIsContinue}
         setScreenText={setScreenText}
         setIsDisplayImg={setIsDisplayImg}
+        setLogin={setLogin}
       />
     );
   } else {

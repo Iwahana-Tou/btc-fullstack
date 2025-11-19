@@ -22,9 +22,9 @@ export default function CreateScreen({ setLogin, allUserData, setUserData }) {
   const handleCreate = () => {
     if (nameRef.current.value === '' || passwordRef.current.value === '')
       return;
-
+    const id = allUserData[allUserData.length - 1].id + 1;
     const newPlayer = {
-      id: allUserData.length + 1,
+      id: id,
       name: nameRef.current.value,
       attack: randomAD(),
       defense: randomAD(),
@@ -42,9 +42,9 @@ export default function CreateScreen({ setLogin, allUserData, setUserData }) {
     }).then((res) => {
       if (res.status === 200) {
         const postData = {
-          id: allUserData.length + 1,
+          id: id,
           name: nameRef.current.value,
-          player_id: allUserData.length + 1,
+          player_id: id,
           password: passwordRef.current.value,
           salt: '',
         };
@@ -59,6 +59,11 @@ export default function CreateScreen({ setLogin, allUserData, setUserData }) {
             setLogin(false);
             setUserData(postData);
             handleBack();
+          } else {
+            const url = `/api/delete/player/${id}`;
+            fetch(url, {
+              method: 'DELETE',
+            });
           }
         });
       }

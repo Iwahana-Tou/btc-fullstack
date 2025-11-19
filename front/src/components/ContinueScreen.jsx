@@ -4,8 +4,9 @@ export default function ContinueScreen({
   setMonster,
   setScreenText,
   setIsDisplayImg,
+  setLogin,
 }) {
-  const onClick = () => {
+  const onClickRevival = () => {
     setPlayer(false);
     setMonster(false);
     setIsContinue(false);
@@ -13,11 +14,23 @@ export default function ContinueScreen({
     setScreenText('コマンドを選択');
   };
 
+  const onClickLogout = () => {
+    setPlayer(false);
+    setMonster(false);
+    setIsContinue(false);
+    setIsDisplayImg(true);
+    setScreenText('コマンドを選択');
+    setLogin(true);
+  };
+
   return (
     <>
       <h1>CONTINUE?</h1>
-      <button className="resultButton" onClick={onClick}>
+      <button className="resultButton" onClick={onClickRevival}>
         ✝️ふっかつ✝️
+      </button>
+      <button className="logoutButton" onClick={onClickLogout}>
+        Logout
       </button>
     </>
   );

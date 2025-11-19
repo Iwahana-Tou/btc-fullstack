@@ -70,7 +70,8 @@ h2 {
 .battleButton,
 .dashButton,
 .resultButton,
-.loginButton {
+.loginButton,
+.logoutButton {
   background-color: #1a1a1a;
   color: #ffffff;
   border: 2px solid #ffffff;

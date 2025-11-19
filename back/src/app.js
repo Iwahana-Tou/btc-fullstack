@@ -37,6 +37,12 @@ function buildApp() {
     res.status(200).end();
   });
 
+  app.delete('/api/delete/player/:id', async (req, res) => {
+    const id = req.params.id;
+    await knex('player').where('id', id).del();
+    res.status(200).end();
+  });
+
   //monsters
   app.get('/api/get/monsters', async (req, res) => {
     const monstersData = await knex.select('*').from('monsters');
@@ -103,8 +109,8 @@ function buildApp() {
       .createHash('sha256')
       .update(String(userSaltedPassword))
       .digest('hex');
-    if (String(userHashedPassword) == String(usersNameData[0].password)) {
-      return res.status(200).json(usersNameData[0]).end();
+    if (userHashedPassword == usersNameData[0].password) {
+      return res.status(200).json(usersNameData[0]);
     }
     res.status(404).end();
   });
@@ -112,7 +118,7 @@ function buildApp() {
   app.post('/api/post/users', async (req, res) => {
     const postData = req.body;
     const salt = crypto.randomBytes(16).toString('hex');
-    const saltedPassword = postData.passwordRef + salt;
+    const saltedPassword = postData.password + salt;
     const hashedPassword = crypto
       .createHash('sha256')
       .update(saltedPassword)
