@@ -54,6 +54,7 @@ export default function CreateScreen({ setLogin, allUserData, setUserData }) {
           if (res.status === 200) {
             setLogin(false);
             setUserData(postData);
+            handleBack();
           }
         });
       }
