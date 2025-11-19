@@ -20,6 +20,9 @@ export default function CreateScreen({ setLogin, allUserData, setUserData }) {
   }
 
   const handleCreate = () => {
+    if (nameRef.current.value === '' || passwordRef.current.value === '')
+      return;
+    console.log(nameRef.current.value);
     const newPlayer = {
       id: allUserData.length + 1,
       name: nameRef.current.value,
