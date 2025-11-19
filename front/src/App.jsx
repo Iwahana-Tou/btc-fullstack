@@ -6,6 +6,7 @@ import PlayerStatus from './components/PlayerStatus.jsx';
 import BattleScreen from './components/BattleScreen.jsx';
 import ResultScreen from './components/ResuleScreen.jsx';
 import ContinueScreen from './components/ContinueScreen.jsx';
+import LoginScreen from './components/LoginScreen.jsx';
 
 function App() {
   const [playerData, setPlayerData] = useState({});
@@ -19,9 +20,11 @@ function App() {
   const [monsterSrc, setMonsterSrc] = useState();
   const [isDisplayImg, setIsDisplayImg] = useState(true);
   const [isMonDisplayImg, setMonIsDisplayImg] = useState(true);
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
 
-  if (result) {
+  if (login) {
+    return <LoginScreen setLogin={setLogin} />;
+  } else if (result) {
     return (
       <ResultScreen
         setPlayer={setPlayer}

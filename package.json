@@ -4,7 +4,7 @@
     "migrate-latest": "npx knex migrate:latest --knexfile src/db/knexfile.js",
     "migrate-down": "npx knex migrate:down --knexfile src/db/knexfile.js",
     "seed-data": "npx knex seed:run --knexfile src/db/knexfile.js",
-    "build": "cd back && npm run build",
+    "build": "cd back && npm run build && cd ../front && npm install && npm run build && rm -rf ../back/public && cp -r dist ../back/public",
     "start": "cd back && npm run start"
   }
 }
