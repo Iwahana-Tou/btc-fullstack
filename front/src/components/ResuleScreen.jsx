@@ -34,7 +34,6 @@ export default function ResultScreen({
       <div className="log">
         <p>Total Kills</p>
         <ul>
-          {console.log(killsData)}
           {killsData.map((el, index) => {
             return <li key={index}>{el.name}</li>;
           })}
