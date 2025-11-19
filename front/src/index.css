@@ -79,6 +79,15 @@ h2 {
   height: 50px;
 }
 
+.nameInput,
+.passwordInput {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  font-family: inherit;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

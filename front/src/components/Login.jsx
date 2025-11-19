@@ -14,19 +14,19 @@ export default function LoginScreen({ setLogin, setAllUserData, setUserData }) {
   };
 
   const handleLogin = () => {
-    fetch('/api/get/users')
+    const params = new URLSearchParams();
+    params.append('name', nameRef.current.value);
+    params.append('password', passwordRef.current.value);
+    const url = `/api/get/users?${params.toString()}`;
+    fetch(url)
       .then((data) => data.json())
-      .then((data) => {
-        setAllUserData(data);
-        data.filter((el) => {
-          if (
-            el.name === nameRef.current.value &&
-            el.password === passwordRef.current.value
-          ) {
-            setUserData(el);
-            setLogin(false);
-          }
-        });
+      .then((res) => {
+        if (res.name === nameRef.current.value) {
+          setUserData(res);
+          setLogin(false);
+        } else {
+          return console.log('error');
+        }
       });
   };
 
@@ -37,14 +37,14 @@ export default function LoginScreen({ setLogin, setAllUserData, setUserData }) {
         className="nameInput"
         ref={nameRef}
         type="text"
-        placeholder="Name"
+        placeholder=" Name"
       ></input>
       <br />
       <input
         className="passwordInput"
         ref={passwordRef}
-        type="text"
-        placeholder="Password"
+        type="password"
+        placeholder=" Password"
       ></input>
       <br />
       <br />

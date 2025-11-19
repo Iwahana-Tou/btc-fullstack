@@ -22,7 +22,7 @@ export default function CreateScreen({ setLogin, allUserData, setUserData }) {
   const handleCreate = () => {
     if (nameRef.current.value === '' || passwordRef.current.value === '')
       return;
-    console.log(nameRef.current.value);
+
     const newPlayer = {
       id: allUserData.length + 1,
       name: nameRef.current.value,
@@ -46,6 +46,7 @@ export default function CreateScreen({ setLogin, allUserData, setUserData }) {
           name: nameRef.current.value,
           player_id: allUserData.length + 1,
           password: passwordRef.current.value,
+          salt: '',
         };
         fetch('/api/post/users', {
           method: 'POST',
@@ -71,14 +72,14 @@ export default function CreateScreen({ setLogin, allUserData, setUserData }) {
         className="nameInput"
         ref={nameRef}
         type="text"
-        placeholder="Name"
+        placeholder=" Name"
       ></input>
       <br />
       <input
         className="passwordInput"
         ref={passwordRef}
-        type="text"
-        placeholder="Password"
+        type="password"
+        placeholder=" Password"
       ></input>
       <br />
       <br />

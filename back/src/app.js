@@ -2,6 +2,7 @@ const express = require('express');
 const knex = require('./knex');
 const cors = require('cors');
 const path = require('path');
+const crypto = require('crypto');
 
 function buildApp() {
   const app = express();
@@ -88,13 +89,36 @@ function buildApp() {
   });
 
   //uses
-  app.get('/api/get/users', async (req, res) => {
+  app.get('/api/get/users/', async (req, res) => {
+    const reqName = req.query.name;
+    const reqPassword = req.query.password;
     const usersData = await knex.select('*').from('users');
-    res.send(usersData);
+    if (!reqPassword) return res.json(usersData);
+    const usersNameData = await knex
+      .where('users.name', reqName)
+      .select('*')
+      .from('users');
+    const userSaltedPassword = reqPassword + usersNameData[0].salt;
+    const userHashedPassword = crypto
+      .createHash('sha256')
+      .update(String(userSaltedPassword))
+      .digest('hex');
+    if (String(userHashedPassword) == String(usersNameData[0].password)) {
+      return res.status(200).json(usersNameData[0]).end();
+    }
+    res.status(404).end();
   });
 
   app.post('/api/post/users', async (req, res) => {
     const postData = req.body;
+    const salt = crypto.randomBytes(16).toString('hex');
+    const saltedPassword = postData.passwordRef + salt;
+    const hashedPassword = crypto
+      .createHash('sha256')
+      .update(saltedPassword)
+      .digest('hex');
+    postData.password = hashedPassword;
+    postData.salt = salt;
     await knex('users').insert(postData);
     res.status(200).end();
   });
