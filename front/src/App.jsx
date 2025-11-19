@@ -19,6 +19,7 @@ function App() {
   const [monsterSrc, setMonsterSrc] = useState();
   const [isDisplayImg, setIsDisplayImg] = useState(true);
   const [isMonDisplayImg, setMonIsDisplayImg] = useState(true);
+  const [login, setLogin] = useState(false);
 
   if (result) {
     return (
