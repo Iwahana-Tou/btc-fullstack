@@ -96,27 +96,27 @@ function buildApp() {
 
   //uses
   app.get('/api/get/users/', async (req, res) => {
-    const reqName = req.query.name;
-    const reqPassword = req.query.password;
     const usersData = await knex.select('*').from('users');
-    if (!reqPassword) return res.json(usersData);
-    const usersNameData = await knex
-      .where('users.name', reqName)
-      .select('*')
-      .from('users');
-    const userSaltedPassword = reqPassword + usersNameData[0].salt;
-    const userHashedPassword = crypto
-      .createHash('sha256')
-      .update(String(userSaltedPassword))
-      .digest('hex');
-    if (userHashedPassword == usersNameData[0].password) {
-      return res.status(200).json(usersNameData[0]);
-    }
-    res.status(404).end();
+    return res.json(usersData);
   });
 
   app.post('/api/post/users', async (req, res) => {
     const postData = req.body;
+    if (!postData.id) {
+      const usersNameData = await knex
+        .where('users.name', postData.name)
+        .select('*')
+        .from('users');
+      const userSaltedPassword = postData.password + usersNameData[0].salt;
+      const userHashedPassword = crypto
+        .createHash('sha256')
+        .update(String(userSaltedPassword))
+        .digest('hex');
+      if (userHashedPassword == usersNameData[0].password) {
+        return res.status(200).json(usersNameData[0]);
+      }
+      return res.status(404).end();
+    }
     const salt = crypto.randomBytes(16).toString('hex');
     const saltedPassword = postData.password + salt;
     const hashedPassword = crypto

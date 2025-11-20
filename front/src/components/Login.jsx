@@ -16,11 +16,16 @@ export default function LoginScreen({ setLogin, setAllUserData, setUserData }) {
   const handleLogin = () => {
     if (nameRef.current.value === '' || passwordRef.current.value === '')
       return;
-    const params = new URLSearchParams();
-    params.append('name', nameRef.current.value);
-    params.append('password', passwordRef.current.value);
-    const url = `/api/get/users?${params.toString()}`;
-    fetch(url)
+    fetch('/api/post/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: nameRef.current.value,
+        password: passwordRef.current.value,
+      }),
+    })
       .then((data) => data.json())
       .then((res) => {
         if (res.name === nameRef.current.value) {
