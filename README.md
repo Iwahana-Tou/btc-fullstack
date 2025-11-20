@@ -4,29 +4,7 @@
 
 ## 事前準備
 
-### front
-
-依存関係のインストール
-
-```sh
-cd front && npm install
-```
-
-サーバーの起動
-
-```sh
-npm run dev
-```
-
-### back
-
-依存関係のインストール
-
-```sh
-cd ../back && npm install
-```
-
-データベースの構築
+### データベースの構築
 
 ```sh
 psql
@@ -37,29 +15,20 @@ CREATE DATABASE dragon_quest;
 .env ファイルの作成（USER や PASSWORD など必要に応じて記述してください）
 
 ```sh
+cd back
 cp .env.sample .env
 ```
 
-マイグレーションとシード
+### build
 
 ```sh
-npm run db:migrate
-npm run db:seed
-```
-
-データベースの確認
-
-```sh
-psql -d dragon_quest
-\dt
-SELECT * FROM player;
-\q
+cd .. && npm run build
 ```
 
 サーバーの起動
 
 ```sh
-npm run dev
+npm run start
 ```
 
 ## 遊び方
