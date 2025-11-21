@@ -103,3 +103,9 @@ button {
 button:hover {
   border-color: #646cff;
 }
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+}
